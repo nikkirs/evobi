@@ -28,6 +28,20 @@ In object window ,there are two components
 - a carousel
 - elements which shows selected elements.
 ```
+### Assembly window
+```
+All the slected elements are shown in gray div  and workspace in yellow.
+- Objects can be resized only in the gray window.
+- Each object can be dropped to (yellow) workspace.
+- After dropping each element "OK" button needs to be pressed to reset the position x and y to zero.
+- In yellow  workspace "Camera div" can also be dragged and dropped to provide the first scene of the game .
+```
 
-
-
+### Logic window
+```
+In this window , you can give properties to the elements and can preview the sequence of actions(move ,jump) given.
+- You can either give the movable property or static property to the object.
+- For movable object you can give predefined move and jump value or you can give keyboard interactions.
+- For the static element , there's a overlap property using which element can be allowed to overlap or it can collide.
+- In miscellaneous property, there's an option to add sound and give the shooting property to the player and you can use this by pressing shift key.
+-
