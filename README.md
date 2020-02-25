@@ -42,6 +42,20 @@ All the slected elements are shown in gray div  and workspace in yellow.
 In this window , you can give properties to the elements and can preview the sequence of actions(move ,jump) given.
 - You can either give the movable property or static property to the object.
 - For movable object you can give predefined move and jump value or you can give keyboard interactions.
+- If you choose keyboard interaction and sequencing together then,only keyboard interaction will work. 
 - For the static element , there's a overlap property using which element can be allowed to overlap or it can collide.
 - In miscellaneous property, there's an option to add sound and give the shooting property to the player and you can use this by pressing shift key.
--
+```
+
+### Preview Window
+```
+In this all the actions are shown in sequence and you can press "preview" button to see the preview of those actions.
+The preview will be opened in a new tab with only player and a platform.
+```
+
+### Game Window
+```
+After giving properties , press "Play" button to launch the game.
+
+```
+
