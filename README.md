@@ -27,6 +27,7 @@ To install this web app
 In object window ,there are two components 
 - a carousel
 - elements which shows selected elements.
+Bug-when you select elements more than five scroll-bar will come in assembly window but in assembly window scrollbar cannot be used.
 ```
 ### Assembly window
 ```
@@ -35,6 +36,7 @@ All the slected elements are shown in gray div  and workspace in yellow.
 - Each object can be dropped to (yellow) workspace.
 - After dropping each element "OK" button needs to be pressed to reset the position x and y to zero.
 - In yellow  workspace "Camera div" can also be dragged and dropped to provide the first scene of the game .
+
 ```
 
 ### Logic window
@@ -56,6 +58,6 @@ The preview will be opened in a new tab with only player and a platform.
 ### Game Window
 ```
 After giving properties , press "Play" button to launch the game.
-
 ```
+
 
