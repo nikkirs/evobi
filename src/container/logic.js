@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router"; //used for preview
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { obj_prop_select, Sequence, clik, property } from "../actions/index"; //all the actions
+import { obj_prop_select } from "../actions/index"; //all the actions
 //functions used
 //render(called first)->renderlist,properties,preview_screen
 //properties->movable,statica,misc
@@ -11,25 +11,6 @@ import { obj_prop_select, Sequence, clik, property } from "../actions/index"; //
 class Moves extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      //initially false, when clicked -state is changed to true
-      a: false, //used in movable function
-      b: false, //used in statica function
-      c: false, //used in miscelleneous
-
-      st: {
-        color: "red" //flag  to enable overlap
-      },
-      st1: {
-        color: "red" //flag  to enable sound
-      },
-      st2: {
-        color: "red" //flag  to enable keyboard interaction
-      },
-      st3: {
-        color: "red" //flag to enable boomb shooting
-      }
-    };
   }
   updateTextInput(val) {
     document.getElementById("textInput").value = val; //to update input box for move
@@ -40,14 +21,16 @@ class Moves extends Component {
   renderlist() {
     const a = this.props.object.map(o => {
       return (
-        <img
-          src={o.path}
-          height="100"
-          width="100"
-          onClick={() => {
-            this.props.obj_prop_select(o); //3rd option gets open for that particular object
-          }}
-        ></img>
+        <div className="card">
+          <img
+            src={o.path}
+            height="100"
+            width="100"
+            onClick={() => {
+              this.props.obj_prop_select(o); //3rd option gets open for that particular object
+            }}
+          ></img>
+        </div>
       );
     });
 
@@ -55,47 +38,44 @@ class Moves extends Component {
   }
 
   misc() {
-    if (!this.state.c) {
-      return;
-    }
     return (
       <div>
-        <h4 style={this.state.st1}>Sound</h4>
+        <h4>Sound</h4>
         <button
+          type="button"
+          class="btn btn-success"
+          style={{ marginRight: "20px" }}
           onClick={() => {
             this.props.objprop.prop.sound = true;
-            this.setState({ st1: { color: "green" } });
-          }}
-          onBlur={() => {
-            this.setState({ st1: { color: "red" } });
           }}
         >
           True
         </button>
         <button
+          type="button"
+          class="btn btn-danger"
           onClick={() => {
             this.props.objprop.prop.sound = false;
-            this.setState({ st1: { color: "red" } });
           }}
         >
           False
         </button>
-        <h4 style={this.state.st3}>Bomb Shooting</h4>
+        <h4>Bomb Shooting</h4>
         <button
+          type="button"
+          class="btn btn-success"
+          style={{ marginRight: "20px" }}
           onClick={() => {
             this.props.objprop.prop.shoot = true; //objprop contains all the properties (property_reducer.js)
-            this.setState({ st3: { color: "green" } });
-          }}
-          onBlur={() => {
-            this.setState({ st3: { color: "red" } });
           }}
         >
           True
         </button>
         <button
+          type="button"
+          class="btn btn-danger"
           onClick={() => {
             this.props.objprop.prop.shoot = false;
-            this.setState({ st3: { color: "red" } });
           }}
         >
           False
@@ -104,27 +84,24 @@ class Moves extends Component {
     );
   }
   statica() {
-    if (!this.state.b) {
-      return;
-    }
     return (
       <div>
-        <h4 style={this.state.st}>Overlap</h4>
+        <h4>Overlap</h4>
         <button
+          type="button"
+          class="btn btn-success"
+          style={{ marginRight: "20px" }}
           onClick={() => {
             this.props.objprop.prop.overlap = true;
-            this.setState({ st: { color: "green" } });
-          }}
-          onBlur={() => {
-            this.setState({ st: { color: "red" } });
           }}
         >
           True
         </button>
         <button
+          type="button"
+          class="btn btn-danger"
           onClick={() => {
             this.props.objprop.prop.overlap = false;
-            this.setState({ st: { color: "red" } });
           }}
         >
           False
@@ -133,21 +110,17 @@ class Moves extends Component {
     );
   }
   movable() {
-    if (!this.state.a) {
-      return;
-    }
     return (
       <div>
-        {
-          //move
-        }
-        <h4>
+        <h4>Sequence</h4>
+        <h4 style={{ marginRight: "20px" }}>
           move
           <input
             type="range"
             name="rangeInput"
             min="0"
             max="1000"
+            style={{ marginRight: "5px" }}
             onChange={event => {
               this.updateTextInput(event.target.value);
             }}
@@ -160,7 +133,7 @@ class Moves extends Component {
 
               //used for preview
               localStorage.setItem("obj", JSON.stringify(this.props.objprop)); //to store player properties in local storage
-
+              this.setState({});
               event.target.value = 0; //to reset
             }}
           ></input>
@@ -168,22 +141,29 @@ class Moves extends Component {
             type="text"
             id="textInput"
             value="0"
-            style={{ width: "60px" }}
+            style={{ marginRight: "5px", width: "60px" }}
           ></input>
-          <button>Ok</button>
+          <button
+            type="submit"
+            class="btn btn-primary mb-2"
+            style={{ marginRight: "5px" }}
+          >
+            Submit
+          </button>
         </h4>
 
         {
           //////////
         }
 
-        <h4>
+        <h4 style={{ marginRight: "20px" }}>
           jump
           <input
             type="range"
             name="rangeInput"
             min="0"
             max="500"
+            style={{ marginRight: "5px" }}
             onChange={event => {
               this.updateTextInput1(event.target.value);
             }}
@@ -195,6 +175,7 @@ class Moves extends Component {
               });
               //used for preview
               localStorage.setItem("obj", JSON.stringify(this.props.objprop)); //to store player properties in local storage
+              this.setState({});
 
               event.target.value = 0;
             }}
@@ -203,29 +184,35 @@ class Moves extends Component {
             type="text"
             id="textInput2"
             value="0"
-            style={{ width: "60px" }}
+            style={{ marginRight: "5px", width: "60px" }}
           ></input>
-          <button>ok</button>
+          <button
+            type="submit"
+            class="btn btn-primary mb-2"
+            style={{ marginRight: "5px" }}
+          >
+            Submit
+          </button>{" "}
           {
             //---------------
           }
         </h4>
-        <h3 style={this.state.st2}>Keyboard Interaction</h3>
+        <h4>Keyboard Interaction</h4>
         <button
+          type="button"
+          className="btn btn-success"
+          style={{ marginRight: "20px" }}
           onClick={() => {
             this.props.objprop.prop.cursor = true;
-            this.setState({ st2: { color: "green" } });
-          }}
-          onBlur={() => {
-            this.setState({ st2: { color: "red" } });
           }}
         >
           True
         </button>
         <button
+          type="button"
+          className="btn btn-danger"
           onClick={() => {
             this.props.objprop.prop.cursor = false;
-            this.setState({ st2: { color: "red" } });
           }}
         >
           False
@@ -238,40 +225,19 @@ class Moves extends Component {
       return;
     }
     return (
-      <div id="properties">
-        <h3
-          onClick={() => {
-            this.setState({ a: true });
-          }}
-        >
-          Moveable
-        </h3>
-        {this.movable()}
-        <h3
-          onClick={() => {
-            this.setState({ b: true });
-          }}
-        >
-          static
-        </h3>
-        {this.statica()}
-        <h3
-          onClick={() => {
-            this.setState({ c: true });
-          }}
-        >
-          Miscellaneous
-        </h3>
-        {this.misc()}
-
-        <button
-          id="submit"
-          onClick={() => {
-            this.props.clik(true); //ok button to go to main game preview
-          }}
-        >
-          ok
-        </button>
+      <div>
+        <div id="movable">
+          <h3>Movable</h3>
+          {this.movable()}
+        </div>
+        <div id="static">
+          <h3>Static</h3>
+          {this.statica()}
+        </div>
+        <div id="misc">
+          <h3>Miscelleneous</h3>
+          {this.misc()}
+        </div>
       </div>
     );
   }
@@ -281,11 +247,10 @@ class Moves extends Component {
     } else {
       const a = this.props.objprop.prop.seq.map(o => {
         return (
-          <div>
-            <div>
+          <div id="preview_values">
+            <div style={{ marginTop: "20px", marginLeft: "10px" }}>
               {o.name}--{o.value}
             </div>
-            |
           </div>
         );
       });
@@ -296,14 +261,34 @@ class Moves extends Component {
   render() {
     return (
       <div>
-        <div id="moves">{this.renderlist()}</div>
-        {this.properties()}
-        <div id="preview">
-          {this.preview_screen()}
-          <Link to="/preview" target="_blank">
-            Preview
-          </Link>
+        <div id="moves" className="scrolling-wrapper scrollbar">
+          {this.renderlist()}
         </div>
+        <div id="properties">{this.properties()}</div>
+        <div id="preview">{this.preview_screen()}</div>
+
+        <Link
+          to="/preview"
+          target="_blank"
+          id="preview_link"
+          type="button"
+          className="btn btn-success"
+        >
+          Preview
+        </Link>
+        <Link
+          to="/game"
+          target="_blank"
+          id="game_link"
+          type="button"
+          className="btn btn-success"
+          onClick={() => {
+            localStorage.setItem("obj", JSON.stringify(this.props.object));
+            localStorage.setItem("cam", JSON.stringify(this.props.camera_pos));
+          }}
+        >
+          Play
+        </Link>
       </div>
     );
   }
@@ -312,14 +297,11 @@ function mapStateToProps(state) {
   return {
     objprop: state.obj_prop_select,
     object: state.objectselect,
-    addprop: state.addprop
+    camera_pos: state.camera_pos
   };
 }
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { Sequence, obj_prop_select, clik, property },
-    dispatch
-  );
+  return bindActionCreators({ obj_prop_select }, dispatch);
 }
 export default connect(
   mapStateToProps,

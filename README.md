@@ -1,63 +1,25 @@
-# React Game Engine
-It is a basic game engine to create a simple game so that you can get to know how the game can be created.
+# ReduxSimpleStarter
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Interested in learning [Redux](https://www.udemy.com/react-redux/)?
 
-### Prerequisites
-What things you need to install the web app
-```
-- NodeJs
-- NPM package manager 
-```
+### Getting Started
 
-### Installing
-To install this web app
+There are two methods for getting started with this repo.
+
+#### Familiar with Git?
+Checkout this repo, install dependencies, then start the gulp process with the following:
 
 ```
-1. Download the zip folder and extract it.
-2. Run npm install.This will install all the required libraries.
-3. Then type npm start.This will run web app locally on server http://localhost:8080/
+> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
+> cd ReduxSimpleStarter
+> npm install
+> npm start
 ```
 
-## Working
-
-### Objects window
-```
-In object window ,there are two components 
-- a carousel
-- elements which shows selected elements.
-Bug-when you select elements more than five scroll-bar will come in assembly window but in assembly window scrollbar cannot be used.
-```
-### Assembly window
-```
-All the slected elements are shown in gray div  and workspace in yellow.
-- Objects can be resized only in the gray window.
-- Each object can be dropped to (yellow) workspace.
-- After dropping each element "OK" button needs to be pressed to reset the position x and y to zero.
-- In yellow  workspace "Camera div" can also be dragged and dropped to provide the first scene of the game .
+#### Not Familiar with Git?
+Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
 
 ```
-
-### Logic window
+> npm install
+> npm start
 ```
-In this window , you can give properties to the elements and can preview the sequence of actions(move ,jump) given.
-- You can either give the movable property or static property to the object.
-- For movable object you can give predefined move and jump value or you can give keyboard interactions.
-- If you choose keyboard interaction and sequencing together then,only keyboard interaction will work. 
-- For the static element , there's a overlap property using which element can be allowed to overlap or it can collide.
-- In miscellaneous property, there's an option to add sound and give the shooting property to the player and you can use this by pressing shift key.
-```
-
-### Preview Window
-```
-In this all the actions are shown in sequence and you can press "preview" button to see the preview of those actions.
-The preview will be opened in a new tab with only player and a platform.
-```
-
-### Game Window
-```
-After giving properties , press "Play" button to launch the game.
-```
-
-

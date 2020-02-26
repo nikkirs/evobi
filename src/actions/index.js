@@ -21,14 +21,6 @@ export function Increment(inc) {
   };
 }
 
-export function clik(t) {
-  //to change flag after clicking ok button of logic window
-  //used in app to show only last game window
-  return {
-    type: "CLIK",
-    payload: t
-  };
-}
 export function obj_prop_select(obj) {
   //to get corresponding properties of the objects selected in logic window
   return {

@@ -9,23 +9,24 @@ var explosion = new Audio("../../explosion.mp3");
 //create() to create all sort of objects
 //update() which is called in a loop in milliseconds
 //config to define properties  about the canvas
+
 class Player extends React.Component {
   constructor(props) {
+    var obj = JSON.parse(localStorage.getItem("obj"));
+    console.log(obj, "paridhi");
+    var cam = JSON.parse(localStorage.getItem("cam"));
     super(props);
     var shoot = 0; //flag for shooting enable
     var down = 0; //flag for move condition in update
     var first = 0;
     var flag = 0;
     var cursor1 = 0; //flag for keyboard interaction
-    var camera_pos = this.props.camera_pos;
-    // first variable for the fist move selected ,its value is one when player touches the ground for the first time
 
     var seq1 = []; //sequence of moves in a array
     var current_position; //used in move in update func
 
-    var ar = this.props.obj; //obj contains all objects in array;
+    var ar = obj; //obj contains all objects in array;
 
-    var arr1 = this.props.obj; //shape contains player array
     var stars, bombs, any, dudes;
     var bomb_sound = false;
     var i = 0;
@@ -74,7 +75,7 @@ class Player extends React.Component {
             this.load.image("grass", "../../grass.png");
             this.load.image("star", "../../star.png");
             this.load.image("bomb", "../../bomb.png");
-            this.load.image("water", "../../underground.jpg");
+            this.load.image("sky", "../../sky.png");
 
             this.load.spritesheet("dude", "../../dude.png", {
               frameWidth: 32,
@@ -88,15 +89,9 @@ class Player extends React.Component {
 
           create: function() {
             const rememberMe = localStorage.getItem("name");
-            console.log(rememberMe);
 
-            this.add.image(400, 300, "water").setScale(1.5);
-            this.cameras.main.setBounds(
-              camera_pos.x + 60,
-              camera_pos.y,
-              1090 * 2,
-              1000
-            );
+            this.add.image(400, 300, "sky").setScale(2);
+            this.cameras.main.setBounds(cam.x + 60, cam.y, 1090 * 2, 1000);
             // this.cameras.main.width = 450;
             // this.cameras.main.height = 600;
             var player;
@@ -109,7 +104,6 @@ class Player extends React.Component {
 
             for (var i = 0; i < ar.length; i++) {
               if (!ar[i].prop.seq.length && !ar[i].prop.cursor) {
-                console.log("hiiiii");
                 if (ar[i].prop.overlap == true) {
                   if (ar[i].name == "star") {
                     stars = this.physics.add.sprite(
@@ -143,7 +137,6 @@ class Player extends React.Component {
                       .refreshBody();
                   }
                 } else {
-                  console.log(ar[i].name);
                   platforms
                     .create(ar[i].x - 150, ar[i].y + 150, ar[i].name)
                     .setDisplaySize(ar[i].w, ar[i].h)
@@ -197,9 +190,6 @@ class Player extends React.Component {
               }
             }
             this.cursors = this.input.keyboard.createCursorKeys();
-            if (arr1[0].bounce) player.setBounce(0.5);
-            else player.setBounce(0.1);
-            // player.setCollideWorldBounds(true);for player collision with the world walls
 
             //for animation of the image frames
             this.cameras.main.startFollow(player, true, 0.05, 0.05);
@@ -359,12 +349,8 @@ class Player extends React.Component {
 }
 //no dispatch because nothing is being sent from this file to reducer
 function mapStateToProps(state) {
-  console.log(state.objectselect);
   return {
-    seq: state.sequence,
-    obj: state.objectselect,
-    objpos: state.objectpos,
-    camera_pos: state.camera_pos
+    obj: state.objectselect
   };
 }
 export default connect(

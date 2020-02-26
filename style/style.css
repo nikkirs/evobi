@@ -131,27 +131,50 @@ html {
 }
 #moves {
   position: absolute;
-  top: 20%;
-  height: 200px;
-  width: 1000px;
-  text-align: center;
+  top: 15%;
+  left: 25%;
+  height: 150px;
+  width: 800px;
 }
-#moves img {
-  margin: 20px;
+#moves div {
+  background: transparent;
+}
+#moves div {
+  margin: 30px;
+  transition: transform 0.5s; /* Animation */
+  border: none;
+}
+
+#moves div:hover {
+  transform: scale(1.5);
+}
+.scrolling-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: none;
+}
+.card {
+  flex: 0 0 auto;
+  border: none;
 }
 #properties {
   position: absolute;
-  top: 45%;
+  top: 43%;
+  left: 2%;
   margin: 0 auto;
   height: 300px;
-  width: 700px;
-  background-color: black;
+  width: 850px;
+  background-color: rgb(74, 209, 135);
   overflow-y: auto;
+  border-radius: 2%;
 }
 
 #properties h3 {
   color: white;
 }
+
 #cameradiv {
   position: fixed;
   width: 450px;
@@ -165,9 +188,68 @@ html {
 }
 #preview {
   position: absolute;
-  top: 15%;
+  top: 43%;
   right: 10%;
   height: 300px;
   width: 300px;
   background-color: orange;
+  overflow: auto;
+  text-align: "center";
+  border-radius: 2%;
+}
+#preview_link {
+  position: absolute;
+  top: 93%;
+  right: 18%;
+}
+#preview_values {
+  margin-left: 100px;
+  text-align: center;
+}
+#preview_values div {
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  width: 100px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+#game_link {
+  position: absolute;
+  top: 93%;
+  left: 28%;
+}
+
+#movable {
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  height: 250px;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5%;
+  text-align: center;
+}
+#static {
+  position: absolute;
+  top: 6%;
+  left: 65%;
+
+  height: 250px;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5%;
+  text-align: center;
+}
+#misc {
+  position: absolute;
+  top: 6%;
+  left: 125%;
+  margin-right: 20px;
+  height: 250px;
+  width: 400px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5%;
+  text-align: center;
 }
